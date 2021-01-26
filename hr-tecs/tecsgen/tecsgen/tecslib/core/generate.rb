@@ -2854,6 +2854,8 @@ EOT
 #####  celltype glue code
   def gen_cell_private_header f
     f.print "#include \"#{@global_name}_tecsgen.#{$h_suffix}\"\n"
+    #f.print "#include \"mruby.#{$h_suffix}\"\n"
+    #f.print "#include \"mruby/dump.#{$h_suffix}\"\n"
   end
 
   def gen_cell_factory_header f
@@ -4254,7 +4256,9 @@ EOT
 #####  celltype template
 
   def gen_template_private_header f
-    f.print "#include \"#{@global_name}_tecsgen.#{$h_suffix}\"\n\n"
+    f.print "#include \"#{@global_name}_tecsgen.#{$h_suffix}\"\n"
+    f.print "#include \"mruby.#{$h_suffix}\"\n"
+    f.print "#include \"mruby/dump.#{$h_suffix}\"\n\n"
     f.print <<EOT
 #ifndef E_OK
 #define	E_OK	0		/* success */

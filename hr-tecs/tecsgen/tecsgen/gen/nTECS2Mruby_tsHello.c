@@ -10,6 +10,8 @@
 
 /* プロトタイプ宣言や変数の定義をここに書きます #_PAC_# */
 #include "nTECS2Mruby_tsHello_tecsgen.h"
+#include "mruby.h"
+#include "mruby/dump.h"
 
 #ifndef E_OK
 #define	E_OK	0		/* success */
