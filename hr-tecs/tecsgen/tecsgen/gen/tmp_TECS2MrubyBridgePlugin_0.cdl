@@ -1,0 +1,5 @@
+namespace nTECS2Mruby{
+  celltype tsHello_1 {
+    entry ::sHello_1 eEnt;
+  };
+};
