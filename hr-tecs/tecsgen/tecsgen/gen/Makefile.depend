@@ -1,5 +1,5 @@
-# Celltype: tsHello_1  #_MDEP_#
-$(_TECS_OBJ_DIR)nTECS2Mruby_tsHello_1_tecsgen.o : nTECS2Mruby_tsHello_1_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nTECS2Mruby_tsHello_1_factory.h $(GEN_DIR)/nTECS2Mruby_tsHello_1_tecsgen.h $(GEN_DIR)/sHello_1_tecsgen.h
-$(_TECS_OBJ_DIR)nTECS2Mruby_tsHello_1_templ.o : nTECS2Mruby_tsHello_1_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nTECS2Mruby_tsHello_1_factory.h $(GEN_DIR)/nTECS2Mruby_tsHello_1_tecsgen.h $(GEN_DIR)/sHello_1_tecsgen.h
-$(_TECS_OBJ_DIR)nTECS2Mruby_tsHello_1.o : nTECS2Mruby_tsHello_1.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nTECS2Mruby_tsHello_1_factory.h $(GEN_DIR)/nTECS2Mruby_tsHello_1_tecsgen.h $(GEN_DIR)/sHello_1_tecsgen.h
+# Celltype: tsHello  #_MDEP_#
+$(_TECS_OBJ_DIR)nTECS2Mruby_tsHello_tecsgen.o : nTECS2Mruby_tsHello_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nTECS2Mruby_tsHello_factory.h $(GEN_DIR)/nTECS2Mruby_tsHello_tecsgen.h $(GEN_DIR)/sHello_tecsgen.h
+$(_TECS_OBJ_DIR)nTECS2Mruby_tsHello_templ.o : nTECS2Mruby_tsHello_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nTECS2Mruby_tsHello_factory.h $(GEN_DIR)/nTECS2Mruby_tsHello_tecsgen.h $(GEN_DIR)/sHello_tecsgen.h
+$(_TECS_OBJ_DIR)nTECS2Mruby_tsHello.o : nTECS2Mruby_tsHello.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nTECS2Mruby_tsHello_factory.h $(GEN_DIR)/nTECS2Mruby_tsHello_tecsgen.h $(GEN_DIR)/sHello_tecsgen.h
 
