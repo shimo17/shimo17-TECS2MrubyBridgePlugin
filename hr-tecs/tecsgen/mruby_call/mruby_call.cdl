@@ -1,0 +1,40 @@
+import( "../../../test/cygwin/cygwin_kernel.cdl" );
+
+signature smcall {
+ 
+ void func(void);
+ //int16_t func1(void);
+ //int32_t func2([in]const char* str);
+ //int32_t func3([in]int32_t val, [in]int32_t val2);
+};
+
+signature sMruby{
+};
+
+celltype tMrubyCaller{
+	//call sMruby cMruby;
+	entry sTaskBody eBody2;
+};
+celltype tTestMain{
+	call sTaskBody cBody2;
+	entry sTaskBody eBody;
+};
+generate( TECS2MrubyBridgePlugin, smcall, "" );
+cell nTECS2Mruby::tsmcall mcallBridge {
+	//cBody = Task.eTask;
+};
+cell tTestMain TestMain{
+	cBody2 = MrubyCaller.eBody2; 
+};
+cell tTask Task{
+	cBody = TestMain.eBody;
+	stackSize = 81920;
+    priority  = 10;
+    taskAttribute =  C_EXP("TA_ACT");//asp用の名前(cygwin_kernel.cdl見ればわかる)
+
+};
+cell tMrubyCaller MrubyCaller{
+};
+//cell tMrubyVM MrubyVM{
+
+//};

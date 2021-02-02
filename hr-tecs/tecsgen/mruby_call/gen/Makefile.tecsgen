@@ -1,4 +1,4 @@
-TECS_IMPORT_CDLS = tecslib/plugin/mruby_call.cdl /home/shimo/mruby-on-ev3rt+tecs2.2.0/hr-tecs/tecsgen/tecsgen/tecs/mruby/../../../test/cygwin/cygwin_kernel.cdl gen/tmp_plugin_post_code.cdl
+TECS_IMPORT_CDLS = mruby_call.cdl /home/shimo/mruby-on-ev3rt+tecs2.2.0/hr-tecs/tecsgen/tecsgen/tecs/mruby/../../../test/cygwin/cygwin_kernel.cdl gen/tmp_plugin_post_code.cdl
 TECS_IMPORT_HEADERS = /home/shimo/mruby-on-ev3rt+tecs2.2.0/hr-tecs/tecsgen/tecsgen/tecs/mruby/../../../test/cygwin/cygwin_tecs.h
 TECS_IMPORTS = $(TECS_IMPORT_CDLS) $(TECS_IMPORT_HEADERS)
 

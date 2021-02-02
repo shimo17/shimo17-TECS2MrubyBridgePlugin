@@ -1,4 +1,4 @@
-import_C( "cygwin_tecs.h" );
+import_C( "../../../test/cygwin/cygwin_tecs.h" );
 
 /*
  *  タスク本体を呼び出すためのシグニチャ

@@ -80,7 +80,7 @@ clean :
 tecs : $(PRE_TECSGEN_TARGET) $(TIMESTAMP) $(POST_TECSGEN_TARGET)
 
 $(TIMESTAMP) : $(TECS_IMPORTS)
-	$(TECSGEN)  --generate-all-template tecslib/plugin/mruby_call.cdl -I ../test/cygwin
+	$(TECSGEN)  -I../test/cygwin mruby_call.cdl
 # generic target for objs
 $(_TECS_OBJ_DIR)%.o : %.c
 	$(CC) -c $(CFLAGS) -o $@ $<

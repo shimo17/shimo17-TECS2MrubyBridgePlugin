@@ -122,7 +122,7 @@ enum mrb_vtype {
   MRB_TT_MAXDEFINE    /*  25 */
 };
 
-#include <mruby/object.h>
+#include "object.h"
 
 #ifdef MRB_DOCUMENTATION_BLOCK
 

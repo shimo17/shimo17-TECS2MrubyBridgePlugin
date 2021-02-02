@@ -2,17 +2,17 @@
  * このファイルは tecsgen により自動生成されました
  * このファイルを編集して使用することは、意図されていません
  */
-#include "nTECS2Mruby_tsHello_1_tecsgen.h"
-#include "nTECS2Mruby_tsHello_1_factory.h"
+#include "tTestMain_tecsgen.h"
+#include "tTestMain_factory.h"
 
 /* 受け口ディスクリプタ型 #_EDT_# */
-/* eEnt : omitted by entry port optimize */
+/* eBody : omitted by entry port optimize */
 
 /* 受け口スケルトン関数 #_EPSF_# */
-/* eEnt : omitted by entry port optimize */
+/* eBody : omitted by entry port optimize */
 
 /* 受け口スケルトン関数テーブル #_EPSFT_# */
-/* eEnt : omitted by entry port optimize */
+/* eBody : omitted by entry port optimize */
 
 /* 呼び口の参照する受け口ディスクリプタ(実際の型と相違した定義) #_CPEPD_# */
 
@@ -20,4 +20,4 @@
 
 /* 属性・変数の配列 #_AVAI_# */
 /* 受け口ディスクリプタ #_EPD_# */
-/* eEnt : omitted by entry port optimize */
+/* eBody : omitted by entry port optimize */
