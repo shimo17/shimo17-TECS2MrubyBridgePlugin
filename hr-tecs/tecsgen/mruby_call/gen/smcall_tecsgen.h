@@ -21,6 +21,7 @@ struct tag_smcall_VDES {
 /* シグニチャ関数テーブル #_SFT_# */
 struct tag_smcall_VMT {
     void           (*func__T)( const struct tag_smcall_VDES *edp );
+    int32_t        (*func3__T)( const struct tag_smcall_VDES *edp, int32_t val, int32_t val2 );
 };
 
 /* シグニチャディスクリプタ(動的結合用) #_SDES_# */
@@ -32,5 +33,6 @@ typedef struct { struct tag_smcall_VDES *vdes; } Descriptor( smcall );
 
 /* function id */
 #define	FUNCID_SMCALL_FUNC                     (1)
+#define	FUNCID_SMCALL_FUNC3                    (2)
 
 #endif /* smcall_TECSGEN_H */

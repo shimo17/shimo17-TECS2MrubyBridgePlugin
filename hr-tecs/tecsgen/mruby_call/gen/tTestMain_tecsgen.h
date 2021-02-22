@@ -20,6 +20,7 @@
 #include "global_tecsgen.h"
 
 /* シグニチャヘッダ #_ISH_# */
+#include "smcall_tecsgen.h"
 #include "sTaskBody_tecsgen.h"
 
 #ifndef TOPPERS_MACRO_ONLY
@@ -49,7 +50,7 @@ void         tTestMain_eBody_main(tTestMain_IDX idx);
 #define  tTestMain_CB_TYPE_ONLY
 #define TOPPERS_CB_TYPE_ONLY
 #endif  /* TOPPERS_CB_TYPE_ONLY */
-#include "tMrubyCaller_tecsgen.h"
+#include "nTECS2Mruby_tsmcall_tecsgen.h"
 #ifdef  tTestMain_CB_TYPE_ONLY
 #undef TOPPERS_CB_TYPE_ONLY
 #endif /* tTestMain_CB_TYPE_ONLY */
@@ -65,9 +66,12 @@ void         tTestMain_eBody_main(tTestMain_IDX idx);
 /* セルCBを得るマクロ #_GCB_# */
 #define tTestMain_GET_CELLCB(idx) ((void *)0)
  /* 呼び口関数マクロ #_CPM_# */
-#define tTestMain_cBody2_main( p_that ) \
-	  tMrubyCaller_eBody2_main( \
-	   (tMrubyCaller_IDX)0 )
+#define tTestMain_cBody2_func( p_that ) \
+	  nTECS2Mruby_tsmcall_eEnt_func( \
+	   (nTECS2Mruby_tsmcall_IDX)0 )
+#define tTestMain_cBody2_func3( p_that, val, val2 ) \
+	  nTECS2Mruby_tsmcall_eEnt_func3( \
+	   (nTECS2Mruby_tsmcall_IDX)0, (val), (val2) )
 
 #endif /* TOPPERS_CB_TYPE_ONLY */
 
@@ -104,8 +108,10 @@ extern "C" {
 #define CELLIDX	tTestMain_IDX
 
 /* 呼び口関数マクロ（短縮形）#_CPMA_# */
-#define cBody2_main( ) \
-          ((void)p_cellcb, tTestMain_cBody2_main( p_cellcb ))
+#define cBody2_func( ) \
+          ((void)p_cellcb, tTestMain_cBody2_func( p_cellcb ))
+#define cBody2_func3( val, val2 ) \
+          ((void)p_cellcb, tTestMain_cBody2_func3( p_cellcb, val, val2 ))
 
 
 

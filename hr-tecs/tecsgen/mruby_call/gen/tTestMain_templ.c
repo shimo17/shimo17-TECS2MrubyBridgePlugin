@@ -10,8 +10,9 @@
  * tecsmerge によるマージに使用されます
  *
  * 呼び口関数 #_TCPF_#
- * call port: cBody2 signature: sTaskBody context:task
- *   void           cBody2_main( );
+ * call port: cBody2 signature: smcall context:task
+ *   void           cBody2_func( );
+ *   int32_t        cBody2_func3( int32_t val, int32_t val2 );
  *
  * #[</PREAMBLE>]# */
 

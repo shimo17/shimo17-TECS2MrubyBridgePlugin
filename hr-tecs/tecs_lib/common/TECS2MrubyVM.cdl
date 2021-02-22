@@ -1,0 +1,22 @@
+import_C ("../../tecsgen/tecsgen/tecs/mruby/tecs_mruby.h");
+
+signature sTECS2MrubyVM{
+	void init(void);
+	mrb_state get_mrb(void);
+	void fin(void);
+};
+
+celltype tTECS2MrubyVM{
+	//call sTask cTask;#もし、いるならTECSのセルを登録する呼び口
+
+	entry sTECS2MrubyVM eTECS2MrubyVM;
+	var {
+		
+		mrb_state *mrb;
+		mrb_state *context;
+		
+	};
+	//[optional] call sInitalizeBridge cInit;
+};
+
+
