@@ -6,4 +6,4 @@
 #include "global_tecsgen.h京都市"
 
 void  func( );
-int32_t  func3( val, val2 );
+int32_t  func2( val, val6 );

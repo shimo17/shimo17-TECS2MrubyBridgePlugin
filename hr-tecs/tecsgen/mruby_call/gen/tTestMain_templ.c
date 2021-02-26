@@ -10,9 +10,13 @@
  * tecsmerge によるマージに使用されます
  *
  * 呼び口関数 #_TCPF_#
+ * call port: cTECS2MrubyVM signature: sTECS2MrubyVM context:task
+ *   void           cTECS2MrubyVM_init( );
+ *   mrb_state      cTECS2MrubyVM_get_mrb( );
+ *   void           cTECS2MrubyVM_fin( );
  * call port: cBody2 signature: smcall context:task
  *   void           cBody2_func( );
- *   int32_t        cBody2_func3( int32_t val, int32_t val2 );
+ *   int32_t        cBody2_func2( int32_t val, int32_t val6 );
  *
  * #[</PREAMBLE>]# */
 
@@ -49,7 +53,10 @@ eBody_main(CELLIDX idx)
 		/* エラー処理コードをここに記述します */
 	} /* end if VALID_IDX(idx) */
 
-	/* ここに処理本体を記述します #_TEFB_# */
+	cTECS2MrubyVM_init( );
+	
+	cTECS2MrubyVM_fin( );
+
 
 }
 

@@ -20,6 +20,7 @@
 #include "global_tecsgen.h"
 
 /* シグニチャヘッダ #_ISH_# */
+#include "sTECS2MrubyVM_tecsgen.h"
 #include "smcall_tecsgen.h"
 #include "sTaskBody_tecsgen.h"
 
@@ -50,6 +51,7 @@ void         tTestMain_eBody_main(tTestMain_IDX idx);
 #define  tTestMain_CB_TYPE_ONLY
 #define TOPPERS_CB_TYPE_ONLY
 #endif  /* TOPPERS_CB_TYPE_ONLY */
+#include "tTECS2MrubyVM_tecsgen.h"
 #include "nTECS2Mruby_tsmcall_tecsgen.h"
 #ifdef  tTestMain_CB_TYPE_ONLY
 #undef TOPPERS_CB_TYPE_ONLY
@@ -66,12 +68,21 @@ void         tTestMain_eBody_main(tTestMain_IDX idx);
 /* セルCBを得るマクロ #_GCB_# */
 #define tTestMain_GET_CELLCB(idx) ((void *)0)
  /* 呼び口関数マクロ #_CPM_# */
+#define tTestMain_cTECS2MrubyVM_init( p_that ) \
+	  tTECS2MrubyVM_eTECS2MrubyVM_init( \
+	   &tTECS2MrubyVM_CB_tab[0] )
+#define tTestMain_cTECS2MrubyVM_get_mrb( p_that ) \
+	  tTECS2MrubyVM_eTECS2MrubyVM_get_mrb( \
+	   &tTECS2MrubyVM_CB_tab[0] )
+#define tTestMain_cTECS2MrubyVM_fin( p_that ) \
+	  tTECS2MrubyVM_eTECS2MrubyVM_fin( \
+	   &tTECS2MrubyVM_CB_tab[0] )
 #define tTestMain_cBody2_func( p_that ) \
 	  nTECS2Mruby_tsmcall_eEnt_func( \
 	   (nTECS2Mruby_tsmcall_IDX)0 )
-#define tTestMain_cBody2_func3( p_that, val, val2 ) \
-	  nTECS2Mruby_tsmcall_eEnt_func3( \
-	   (nTECS2Mruby_tsmcall_IDX)0, (val), (val2) )
+#define tTestMain_cBody2_func2( p_that, val, val6 ) \
+	  nTECS2Mruby_tsmcall_eEnt_func2( \
+	   (nTECS2Mruby_tsmcall_IDX)0, (val), (val6) )
 
 #endif /* TOPPERS_CB_TYPE_ONLY */
 
@@ -108,10 +119,16 @@ extern "C" {
 #define CELLIDX	tTestMain_IDX
 
 /* 呼び口関数マクロ（短縮形）#_CPMA_# */
+#define cTECS2MrubyVM_init( ) \
+          ((void)p_cellcb, tTestMain_cTECS2MrubyVM_init( p_cellcb ))
+#define cTECS2MrubyVM_get_mrb( ) \
+          ((void)p_cellcb, tTestMain_cTECS2MrubyVM_get_mrb( p_cellcb ))
+#define cTECS2MrubyVM_fin( ) \
+          ((void)p_cellcb, tTestMain_cTECS2MrubyVM_fin( p_cellcb ))
 #define cBody2_func( ) \
           ((void)p_cellcb, tTestMain_cBody2_func( p_cellcb ))
-#define cBody2_func3( val, val2 ) \
-          ((void)p_cellcb, tTestMain_cBody2_func3( p_cellcb, val, val2 ))
+#define cBody2_func2( val, val6 ) \
+          ((void)p_cellcb, tTestMain_cBody2_func2( p_cellcb, val, val6 ))
 
 
 

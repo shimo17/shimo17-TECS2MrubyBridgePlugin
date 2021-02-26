@@ -12,7 +12,7 @@ eMrubyBody_init(CELLIDX idx)
 mrb_state
 eMrubyBody_get_mrb(CELLIDX idx)
 {
-
+	return *mrb;
 }
 
 void

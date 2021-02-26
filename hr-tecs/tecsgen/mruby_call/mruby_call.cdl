@@ -3,9 +3,7 @@ import("../../tecs_lib/common/TECS2MrubyVM.cdl");
 
 signature smcall {
  void func(void);
- //int16_t func1();
- //int32_t func2([in]const char* str);
- int32_t func3([in]int32_t val, [in]int32_t val2);
+ int32_t func2([in]int32_t val, [in]int32_t val6);
 };
 
 celltype tTestMain{
@@ -15,16 +13,18 @@ celltype tTestMain{
 
 };
 cell tTECS2MrubyVM TECS2MrubyVM{
-	//cTask = VM_TECSInitializer.eInitialize;
+	
 };
 generate( TECS2MrubyBridgePlugin, smcall, "" );
  cell nTECS2Mruby::tsmcall mcallBridge {
  	cCal = TECS2MrubyVM.eTECS2MrubyVM;//TWCS2Mruby.cdlのセルを呼び出す。そのためにプラグインで呼び口を追加
 };
 
-cell tTestMain TestMain
+cell tTestMain TestMain{
 	cBody2 = mcallBridge.eEnt; 
+	cTECS2MrubyVM = TECS2MrubyVM.eTECS2MrubyVM;
 };
+
 cell tTask Task{
 	cBody = TestMain.eBody;
 	stackSize = 81920;

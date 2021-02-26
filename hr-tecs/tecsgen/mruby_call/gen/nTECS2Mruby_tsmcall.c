@@ -6,6 +6,12 @@
  * #[<...>]# から #[</...>]# で囲まれたコメントは編集しないでください
  * tecsmerge によるマージに使用されます
  *
+ * 呼び口関数 #_TCPF_#
+ * call port: cCal signature: sTECS2MrubyVM context:task
+ *   void           cCal_init( );
+ *   mrb_state      cCal_get_mrb( );
+ *   void           cCal_fin( );
+ *
  * #[</PREAMBLE>]# */
 
 /* プロトタイプ宣言や変数の定義をここに書きます #_PAC_# */
@@ -42,16 +48,17 @@ eEnt_func(CELLIDX idx)
 
   
 
+  cCal_get_mrb();
   mrb_value func_call = mrb_funcall(mrb ,mrb_top_self(mrb), "func", 0);
 }
 
-/* #[<ENTRY_FUNC>]# eEnt_func3
- * name:         eEnt_func3
- * global_name:  nTECS2Mruby_tsmcall_eEnt_func3
+/* #[<ENTRY_FUNC>]# eEnt_func2
+ * name:         eEnt_func2
+ * global_name:  nTECS2Mruby_tsmcall_eEnt_func2
  * oneway:       false
  * #[</ENTRY_FUNC>]# */
 int32_t
-eEnt_func3(CELLIDX idx, int32_t val, int32_t val2)
+eEnt_func2(CELLIDX idx, int32_t val, int32_t val6)
 {
   int32_t  retval;
   tsmcall_CB    *p_cellcb;
@@ -63,7 +70,8 @@ eEnt_func3(CELLIDX idx, int32_t val, int32_t val2)
 
   
 
-  mrb_value func3_call = mrb_funcall(mrb ,mrb_top_self(mrb), "func3", 2, val, val2);
+  cCal_get_mrb();
+  mrb_value func2_call = mrb_funcall(mrb ,mrb_top_self(mrb), "func2", 2, val, val6);
 }
 
 /* #[<POSTAMBLE>]#

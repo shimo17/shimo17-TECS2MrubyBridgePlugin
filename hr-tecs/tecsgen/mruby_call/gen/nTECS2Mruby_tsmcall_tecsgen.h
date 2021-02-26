@@ -20,6 +20,7 @@
 #include "global_tecsgen.h"
 
 /* シグニチャヘッダ #_ISH_# */
+#include "sTECS2MrubyVM_tecsgen.h"
 #include "smcall_tecsgen.h"
 
 #ifndef TOPPERS_MACRO_ONLY
@@ -39,12 +40,21 @@ typedef int   nTECS2Mruby_tsmcall_IDX;
 /* 受け口関数プロトタイプ宣言 #_EPP_# */
 /* smcall */
 void         nTECS2Mruby_tsmcall_eEnt_func(nTECS2Mruby_tsmcall_IDX idx);
-int32_t      nTECS2Mruby_tsmcall_eEnt_func3(nTECS2Mruby_tsmcall_IDX idx, int32_t val, int32_t val2);
+int32_t      nTECS2Mruby_tsmcall_eEnt_func2(nTECS2Mruby_tsmcall_IDX idx, int32_t val, int32_t val6);
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
 #endif /* TOPPERS_MACRO_ONLY */
 
+/* 最適化のため参照するセルタイプの CB 型の定義を取込む #_ICT_# */
+#ifndef  TOPPERS_CB_TYPE_ONLY
+#define  nTECS2Mruby_tsmcall_CB_TYPE_ONLY
+#define TOPPERS_CB_TYPE_ONLY
+#endif  /* TOPPERS_CB_TYPE_ONLY */
+#include "tTECS2MrubyVM_tecsgen.h"
+#ifdef  nTECS2Mruby_tsmcall_CB_TYPE_ONLY
+#undef TOPPERS_CB_TYPE_ONLY
+#endif /* nTECS2Mruby_tsmcall_CB_TYPE_ONLY */
 #ifndef TOPPERS_CB_TYPE_ONLY
 
 #define nTECS2Mruby_tsmcall_ID_BASE        (1)  /* ID のベース  #_NIDB_# */
@@ -56,6 +66,17 @@ int32_t      nTECS2Mruby_tsmcall_eEnt_func3(nTECS2Mruby_tsmcall_IDX idx, int32_t
 
 /* セルCBを得るマクロ #_GCB_# */
 #define nTECS2Mruby_tsmcall_GET_CELLCB(idx) ((void *)0)
+ /* 呼び口関数マクロ #_CPM_# */
+#define nTECS2Mruby_tsmcall_cCal_init( p_that ) \
+	  tTECS2MrubyVM_eTECS2MrubyVM_init( \
+	   &tTECS2MrubyVM_CB_tab[0] )
+#define nTECS2Mruby_tsmcall_cCal_get_mrb( p_that ) \
+	  tTECS2MrubyVM_eTECS2MrubyVM_get_mrb( \
+	   &tTECS2MrubyVM_CB_tab[0] )
+#define nTECS2Mruby_tsmcall_cCal_fin( p_that ) \
+	  tTECS2MrubyVM_eTECS2MrubyVM_fin( \
+	   &tTECS2MrubyVM_CB_tab[0] )
+
 #endif /* TOPPERS_CB_TYPE_ONLY */
 
 #ifndef TOPPERS_MACRO_ONLY
@@ -91,12 +112,20 @@ extern "C" {
 #define CELLIDX	nTECS2Mruby_tsmcall_IDX
 
 #define tsmcall_IDX  nTECS2Mruby_tsmcall_IDX
+/* 呼び口関数マクロ（短縮形）#_CPMA_# */
+#define cCal_init( ) \
+          ((void)p_cellcb, nTECS2Mruby_tsmcall_cCal_init( p_cellcb ))
+#define cCal_get_mrb( ) \
+          ((void)p_cellcb, nTECS2Mruby_tsmcall_cCal_get_mrb( p_cellcb ))
+#define cCal_fin( ) \
+          ((void)p_cellcb, nTECS2Mruby_tsmcall_cCal_fin( p_cellcb ))
+
 
 
 
 /* 受け口関数マクロ（短縮形） #_EPM_# */
 #define eEnt_func        nTECS2Mruby_tsmcall_eEnt_func
-#define eEnt_func3       nTECS2Mruby_tsmcall_eEnt_func3
+#define eEnt_func2       nTECS2Mruby_tsmcall_eEnt_func2
 
 /* イテレータコード (FOREACH_CELL)の生成(CB,INIB は存在しない) #_NFEC_# */
 #define FOREACH_CELL(i,p_cb)   \
