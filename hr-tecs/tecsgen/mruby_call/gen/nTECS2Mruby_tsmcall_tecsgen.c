@@ -2,8 +2,8 @@
  * このファイルは tecsgen により自動生成されました
  * このファイルを編集して使用することは、意図されていません
  */
-#include "nTECS2Mruby_tsmcall_tecsgen.h"
-#include "nTECS2Mruby_tsmcall_factory.h"
+#include "nTECS2Mruby_tsMcall_tecsgen.h"
+#include "nTECS2Mruby_tsMcall_factory.h"
 
 /* 受け口ディスクリプタ型 #_EDT_# */
 /* eEnt : omitted by entry port optimize */

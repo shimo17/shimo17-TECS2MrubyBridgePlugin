@@ -21,7 +21,7 @@
 
 /* シグニチャヘッダ #_ISH_# */
 #include "sTECS2MrubyVM_tecsgen.h"
-#include "smcall_tecsgen.h"
+#include "sMcall_tecsgen.h"
 #include "sTaskBody_tecsgen.h"
 
 #ifndef TOPPERS_MACRO_ONLY
@@ -52,7 +52,7 @@ void         tTestMain_eBody_main(tTestMain_IDX idx);
 #define TOPPERS_CB_TYPE_ONLY
 #endif  /* TOPPERS_CB_TYPE_ONLY */
 #include "tTECS2MrubyVM_tecsgen.h"
-#include "nTECS2Mruby_tsmcall_tecsgen.h"
+#include "nTECS2Mruby_tsMcall_tecsgen.h"
 #ifdef  tTestMain_CB_TYPE_ONLY
 #undef TOPPERS_CB_TYPE_ONLY
 #endif /* tTestMain_CB_TYPE_ONLY */
@@ -78,11 +78,11 @@ void         tTestMain_eBody_main(tTestMain_IDX idx);
 	  tTECS2MrubyVM_eTECS2MrubyVM_fin( \
 	   &tTECS2MrubyVM_CB_tab[0] )
 #define tTestMain_cBody2_func( p_that ) \
-	  nTECS2Mruby_tsmcall_eEnt_func( \
-	   (nTECS2Mruby_tsmcall_IDX)0 )
+	  nTECS2Mruby_tsMcall_eEnt_func( \
+	   (nTECS2Mruby_tsMcall_IDX)0 )
 #define tTestMain_cBody2_func2( p_that, val, val6 ) \
-	  nTECS2Mruby_tsmcall_eEnt_func2( \
-	   (nTECS2Mruby_tsmcall_IDX)0, (val), (val6) )
+	  nTECS2Mruby_tsMcall_eEnt_func2( \
+	   (nTECS2Mruby_tsMcall_IDX)0, (val), (val6) )
 
 #endif /* TOPPERS_CB_TYPE_ONLY */
 

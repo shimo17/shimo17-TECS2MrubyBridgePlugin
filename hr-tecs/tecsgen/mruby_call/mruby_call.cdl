@@ -1,27 +1,27 @@
 import( "../../../test/cygwin/cygwin_kernel.cdl" );
 import("../../tecs_lib/common/TECS2MrubyVM.cdl");
 
-signature smcall {
+signature sMcall {
  void func(void);
  int32_t func2([in]int32_t val, [in]int32_t val6);
 };
 
 celltype tTestMain{
 	call sTECS2MrubyVM cTECS2MrubyVM;
-	call  smcall cBody2;
+	call  sMcall cBody2;
 	entry sTaskBody eBody;
 
 };
 cell tTECS2MrubyVM TECS2MrubyVM{
 	
 };
-generate( TECS2MrubyBridgePlugin, smcall, "" );
- cell nTECS2Mruby::tsmcall mcallBridge {
- 	cCal = TECS2MrubyVM.eTECS2MrubyVM;//TWCS2Mruby.cdlのセルを呼び出す。そのためにプラグインで呼び口を追加
+generate( TECS2MrubyBridgePlugin, sMcall, "" );
+ cell nTECS2Mruby::tsMcall McallBridge {
+ 	cMethodCall = TECS2MrubyVM.eTECS2MrubyVM;//TWCS2Mruby.cdlのセルを呼び出す。そのためにプラグインで呼び口を追加
 };
 
 cell tTestMain TestMain{
-	cBody2 = mcallBridge.eEnt; 
+	cBody2 = McallBridge.eEnt; 
 	cTECS2MrubyVM = TECS2MrubyVM.eTECS2MrubyVM;
 };
 
