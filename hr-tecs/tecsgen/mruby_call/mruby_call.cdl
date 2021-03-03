@@ -2,8 +2,8 @@ import( "../../../test/cygwin/cygwin_kernel.cdl" );
 import("../../tecs_lib/common/TECS2MrubyVM.cdl");
 
 signature sMcall {
- void func(void);
- int32_t func2([in]int32_t val, [in]int32_t val6);
+ void Hello(void);
+ //int32_t func2([in]int32_t val, [in]int32_t val6);
 };
 
 celltype tTestMain{

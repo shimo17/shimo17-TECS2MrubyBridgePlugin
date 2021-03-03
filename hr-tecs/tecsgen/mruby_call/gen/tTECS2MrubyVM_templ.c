@@ -10,6 +10,7 @@
  * tecsmerge によるマージに使用されます
  *
  * 属性アクセスマクロ #_CAAM_#
+ * irep             const uint8_t*   ATTR_irep       
  * mrb              mrb_state*       VAR_mrb         
  * context          mrb_state*       VAR_context     
  *

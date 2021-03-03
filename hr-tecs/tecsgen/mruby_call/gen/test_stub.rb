@@ -1,6 +1,5 @@
-def func
-	
-
+def Hello
+	puts "Hello, mruby"
     
 end
 

@@ -11,7 +11,7 @@
  * idx_is_id(actual) :  no(no)
  * singleton         :  no
  * has_CB            :  true
- * has_INIB          :  false
+ * has_INIB          :  true
  * rom               :  yes
  * CB initializer    :  yes
  */
@@ -27,8 +27,15 @@
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
+/* セル INIB 型宣言 #_CIP_# */
+typedef const struct tag_tTECS2MrubyVM_INIB {
+    /* call port #_NEP_# */ 
+    /* attribute(RO) #_ATO_# */ 
+    const uint8_t* irep;
+}  tTECS2MrubyVM_INIB;
 /* セル CB 型宣言 #_CCTPA_# */
 typedef struct tag_tTECS2MrubyVM_CB {
+    tTECS2MrubyVM_INIB  *_inib;
     /* call port #_NEP_# */ 
     /* var #_VA_# */ 
     mrb_state*     mrb;
@@ -61,6 +68,10 @@ void         tTECS2MrubyVM_eTECS2MrubyVM_fin(tTECS2MrubyVM_IDX idx);
 /* セルCBを得るマクロ #_GCB_# */
 #define tTECS2MrubyVM_GET_CELLCB(idx) (idx)
 
+/* 属性アクセスマクロ #_AAM_# */
+#define tTECS2MrubyVM_ATTR_irep( p_that )	((p_that)->_inib->irep)
+
+#define tTECS2MrubyVM_GET_irep(p_that)	((p_that)->_inib->irep)
 
 
 /* var アクセスマクロ #_VAM_# */
@@ -107,6 +118,9 @@ extern "C" {
 #define CELLIDX	tTECS2MrubyVM_IDX
 
 
+/* 属性アクセスマクロ(短縮形) #_AAMA_# */
+#define ATTR_irep            tTECS2MrubyVM_ATTR_irep( p_cellcb )
+
 
 /* var アクセスマクロ(短縮形) #_VAMA_# */
 #define VAR_mrb              tTECS2MrubyVM_VAR_mrb( p_cellcb )
@@ -130,7 +144,8 @@ extern "C" {
 /* CB 初期化マクロ #_CIM_# */
 #define INITIALIZE_CB(p_that)	(void)(p_that);
 #define SET_CB_INIB_POINTER(i,p_that)\
-	/* empty */
+	(p_that)->_inib = &tTECS2MrubyVM_INIB_tab[(i)];
+
 #endif /* TOPPERS_CB_TYPE_ONLY */
 
 #ifndef TOPPERS_MACRO_ONLY

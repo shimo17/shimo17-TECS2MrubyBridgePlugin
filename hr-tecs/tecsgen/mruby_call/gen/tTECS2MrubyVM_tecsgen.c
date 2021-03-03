@@ -19,10 +19,21 @@
 /* 呼び口配列 #_CPA_# */
 
 /* 属性・変数の配列 #_AVAI_# */
+/* セル INIB #_INIB_# */
+tTECS2MrubyVM_INIB tTECS2MrubyVM_INIB_tab[] = {
+    /* cell: tTECS2MrubyVM_CB_tab[0]:  TECS2MrubyVM id=1 */
+    {
+        /* entry port #_EP_# */ 
+        /* attribute(RO) */ 
+        TECS2MrubyVM_irep,                       /* irep */
+    },
+};
+
 /* セル CB #_CB_# */
 struct tag_tTECS2MrubyVM_CB tTECS2MrubyVM_CB_tab[] = {
     /* cell: tTECS2MrubyVM_CB_tab[0]:  TECS2MrubyVM id=1 */
     {
+        &tTECS2MrubyVM_INIB_tab[0],              /* _inib */
         /* entry port #_EP_# */ 
         /* var */ 
         0,                                       /* mrb */

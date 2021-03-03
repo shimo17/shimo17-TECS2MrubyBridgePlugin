@@ -82,3 +82,8 @@ PLUGIN_SRCS = \
  	$(GEN_DIR)/nTECS2Mruby_tsMcall.c \
 # PLUGIN_SRCS terminator
 
+clean_mrb_c :
+	rm -f $(MRB_C)
+POST_TECSGEN_TARGET := $(POST_TECSGEN_TARGET) TECS2MrubyVM_mrb.c
+TECS_COBJS := $(TECS_COBJS) TECS2MrubyVM_mrb.o
+MRB_C := $(MRB_C) TECS2MrubyVM_mrb.c
