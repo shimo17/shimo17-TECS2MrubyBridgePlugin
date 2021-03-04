@@ -1,0 +1,9 @@
+~/mruby-on-ev3rt+tecs2.2.0/hr-tecs/tecsgen/test/sample/data-normal ~/mruby-on-ev3rt+tecs2.2.0/hr-tecs/tecsgen/test
+##### tecsgen normal-1.idl  #####
+~/mruby-on-ev3rt+tecs2.2.0/hr-tecs/tecsgen/test
+~/mruby-on-ev3rt+tecs2.2.0/hr-tecs/tecsgen/test/sample/data-normal ~/mruby-on-ev3rt+tecs2.2.0/hr-tecs/tecsgen/test
+##### tecsgen normal-2.idl  #####
+~/mruby-on-ev3rt+tecs2.2.0/hr-tecs/tecsgen/test
+~/mruby-on-ev3rt+tecs2.2.0/hr-tecs/tecsgen/test/sample/data-flat ~/mruby-on-ev3rt+tecs2.2.0/hr-tecs/tecsgen/test
+##### tecsgen jsp_flat.sig.CPP sample1_flat.blt.CPP sample1_flat.ct.CPP  #####
+~/mruby-on-ev3rt+tecs2.2.0/hr-tecs/tecsgen/test
