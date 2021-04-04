@@ -3,7 +3,7 @@ MRuby::Gem::Specification.new('mruby-io') do |spec|
   spec.authors = 'Internet Initiative Japan Inc.'
   spec.summary = 'IO and File class'
 
-  spec.cc.include_paths << "#{build.root}/src"
+  spec.cc.include_paths << MRuby::Pathnamex.new(build.root).join('src')
 
   case RUBY_PLATFORM
   when /mingw|mswin/

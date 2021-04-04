@@ -109,7 +109,7 @@ module MRuby
         gemdir << "/#{params[:path]}" if params[:path]
       elsif params[:path]
         require 'pathname'
-        gemdir = Pathname.new(params[:path]).absolute? ? params[:path] : "#{root}/#{params[:path]}"
+        gemdir = Pathnamex.new(params[:path]).absolute? ? params[:path] : "#{root}/#{params[:path]}"
       else
         fail "unknown gem option #{params}"
       end

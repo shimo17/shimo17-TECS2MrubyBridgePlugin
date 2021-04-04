@@ -13,6 +13,11 @@ module MRuby
         target.instance_eval(&block)
       end
     end
+
+    def one_target(name, &block)
+      return @targets[name] if block.nil?
+      @targets[name].instance_eval(&block)
+    end
   end
 
   class Toolchain
@@ -44,7 +49,8 @@ module MRuby
     end
     include Rake::DSL
     include LoadGems
-    attr_accessor :name, :bins, :exts, :file_separator, :build_dir, :gem_clone_dir
+    attr_accessor :name, :bins, :exts, :file_separator, :build_dir, :gem_clone_dir,
+                  :convert_mode
     attr_reader :libmruby_objs, :gems, :toolchains
     attr_writer :enable_bintest, :enable_test
 
@@ -91,8 +97,11 @@ module MRuby
         @enable_bintest = false
         @enable_test = false
         @toolchains = []
-
+        #
+        #@convert_mode = :NOTHING
+        #
         MRuby.targets[@name] = self
+
       end
 
       MRuby::Build.current = MRuby.targets[@name]
@@ -255,7 +264,7 @@ EOS
       if name.is_a?(Array)
         name.flatten.map { |n| filename(n) }
       else
-        '"%s"' % name.gsub('/', file_separator)
+        '"%s"' % name.to_s.gsub('/', file_separator)
       end
     end
 
@@ -349,6 +358,15 @@ EOS
     def libraries
       [libmruby_static]
     end
+    #
+    def convert_mode=(value)
+      @convert_mode = value
+    end
+
+    def convert_mode
+      @convert_mode
+    end
+    #
   end # Build
 
   class CrossBuild < Build

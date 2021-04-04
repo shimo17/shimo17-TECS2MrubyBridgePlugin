@@ -1,10 +1,12 @@
 require 'forwardable'
 
+require 'shellwords'
+
 module MRuby
   class Command
     include Rake::DSL
     extend Forwardable
-    def_delegators :@build, :filename, :objfile, :libfile, :exefile, :cygwin_filename
+    def_delegators :@build, :filename, :objfile, :libfile, :exefile, :cygwin_filename, :convert_mode
     attr_accessor :build, :command
 
     def initialize(build)
@@ -26,8 +28,23 @@ module MRuby
 
     NotFoundCommands = {}
 
+    def convert_paths(&block)
+      mode = convert_mode
+      mode = :NOTHING if mode.nil?
+      Pathnamex.yield_convert_mode(mode) do
+        block.call
+      end
+    end
+    
     private
+    
+    def _make_arg(command, options, params)
+      command + ' ' + ( options % params )
+    end
+    
     def _run(options, params={})
+      #      return sh  if NotFoundCommands.key? @command
+      p _make_arg(command, options, params)
       return sh command + ' ' + ( options % params ) if NotFoundCommands.key? @command
       begin
         sh build.filename(command) + ' ' + ( options % params )
@@ -42,13 +59,12 @@ module MRuby
     attr_accessor :flags, :include_paths, :defines, :source_exts
     attr_accessor :compile_options, :option_define, :option_include_path, :out_ext
     attr_accessor :cxx_compile_flag, :cxx_exception_flag
-
     def initialize(build, source_exts=[])
       super(build)
       @command = ENV['CC'] || 'cc'
       @flags = [ENV['CFLAGS'] || []]
       @source_exts = source_exts
-      @include_paths = ["#{MRUBY_ROOT}/include"]
+      @include_paths = [Pathnamex.new(MRUBY_ROOT).join('include')]
       @defines = %w()
       @option_include_path = '-I%s'
       @option_define = '-D%s'
@@ -59,22 +75,24 @@ module MRuby
     def search_header_path(name)
       header_search_paths.find do |v|
         File.exist? build.filename("#{v}/#{name}").sub(/^"(.*)"$/, '\1')
+#        Pathnamex.new(build.filename("#{v}/#{name}").sub(/^"(.*)"$/, '\1')).exist?
       end
     end
 
     def search_header(name)
       path = search_header_path name
-      path && build.filename("#{path}/#{name}").sub(/^"(.*)"$/, '\1')
+      Pathnamex.new(path).join( build.filename("#{path}/#{name}").sub(/^"(.*)"$/, '\1') )
+#      path && build.filename("#{path}/#{name}").sub(/^"(.*)"$/, '\1')
     end
 
     def all_flags(_defines=[], _include_paths=[], _flags=[])
-      define_flags = [defines, _defines].flatten.map{ |d| option_define % d }
-      include_path_flags = [include_paths, _include_paths].flatten.map do |f|
-        if MRUBY_BUILD_HOST_IS_CYGWIN
-          option_include_path % cygwin_filename(f)
-        else
-          option_include_path % filename(f)
-        end
+      #      define_flags = [defines, _defines].flatten.map{ |d| option_define % d.chomp }
+      define_flags = [defines, _defines].flatten.map { |d| option_define % d.chomp }
+
+      mode = MRUBY_BUILD_HOST_IS_CYGWIN ? convert_mode : :NOTHING
+
+      include_path_flags = yield_convert_mode(mode) do
+        make_option(include_paths, _include_paths, option_include_path)
       end
       [flags, define_flags, include_path_flags, _flags].flatten.join(' ')
     end
@@ -83,8 +101,12 @@ module MRuby
       FileUtils.mkdir_p File.dirname(outfile)
       _pp "CC", infile.relative_path, outfile.relative_path
       if MRUBY_BUILD_HOST_IS_CYGWIN
-        _run compile_options, { :flags => all_flags(_defines, _include_paths, _flags),
-                                :infile => cygwin_filename(infile), :outfile => cygwin_filename(outfile) }
+        if convert_mode == :CYGWIN_TO_WIN || convert_mode == :CYGWIN_TO_WIN_WITH_ESCAPE
+          infile, outfile = convert_from_cygwin_paths_to_win_paths([infile, outfile])
+        end
+        hash = { :flags => all_flags(_defines, _include_paths, _flags),
+                 :infile => infile, :outfile => outfile }
+        _run compile_options, hash
       else
         _run compile_options, { :flags => all_flags(_defines, _include_paths, _flags),
                                 :infile => filename(infile), :outfile => filename(outfile) }
@@ -135,6 +157,53 @@ module MRuby
         []
       end + [ MRUBY_CONFIG ]
     end
+
+    #
+    def make_option(include_paths, _include_paths, option_include_path)
+      [include_paths, _include_paths].flatten.map do |f|
+        p "option_include_path=#{option_include_path}"
+        p "f.class=#{f.class}"
+        p "f.to_s=#{f.to_s}"
+        p "f.class=#{f.class}"
+        p "f=#{f}"
+        f2 = if f.instance_of?(Pathnamex)
+               p '1 f2'
+               Shellwords.escape(f.to_s.chomp)
+             else
+               p '2 f2'
+               Shellwords.escape(Pathnamex.new(f.chomp).to_s.chomp)
+             end
+        p "f2=#{f2}"
+        option_include_path % f2
+      end
+    end
+    
+    def convert_from_cygwin_paths_to_win_paths(array)
+      yield_convert_mode(convert_mode) do 
+        array.map do |path|
+          if path.instance_of?(Pathnamex)
+            path = path.to_s
+          end
+          convert_from_cygwin_path_to_win_path(path)
+        end
+      end
+    end
+    
+    def convert_from_cygwin_path_to_win_path(path)
+      Shellwords.escape(Pathnamex.new(path.chomp).to_s.chomp)
+    end
+
+    def yield_convert_mode(mode, &block)
+      if block
+        if MRUBY_BUILD_HOST_IS_CYGWIN
+          original_convert_mode = Pathnamex.get_convert_mode
+          Pathnamex.set_convert_mode(mode)
+          ret = block.call
+          Pathnamex.set_convert_mode(original_convert_mode)
+          ret
+        end
+      end
+    end
   end
 
   class Command::Linker < Command
@@ -155,27 +224,49 @@ module MRuby
 
     def all_flags(_library_paths=[], _flags=[])
       library_path_flags = [library_paths, _library_paths].flatten.map do |f|
+        option_library_path % f.to_s
+      end
+=begin
+      library_path_flags = [library_paths, _library_paths].flatten.map do |f|
         if MRUBY_BUILD_HOST_IS_CYGWIN
-          option_library_path % cygwin_filename(f)
+          option_library_path % Pathnamex.new(f)
         else
           option_library_path % filename(f)
         end
       end
+=end
       [flags, library_path_flags, _flags].flatten.join(' ')
     end
 
-    def library_flags(_libraries)
-      [libraries, _libraries].flatten.map{ |d| option_library % d }.join(' ')
-    end
+#    def library_flags(_libraries)
+#      [libraries, _libraries].flatten.map{ |d| option_library % d.to_s }.join(' ')
+#    end
 
     def run(outfile, objfiles, _libraries=[], _library_paths=[], _flags=[], _flags_before_libraries=[], _flags_after_libraries=[])
-      FileUtils.mkdir_p File.dirname(outfile)
-      library_flags = [libraries, _libraries].flatten.map { |d| option_library % d }
+      mode = MRUBY_BUILD_HOST_IS_CYGWIN ? convert_mode : :NOTHING
+      objs = nil
+      library_flags , outfile, objs = Pathnamex.yield_convert_mode(mode) do
+        FileUtils.mkdir_p File.dirname(outfile)
+        library_flags = [libraries, _libraries].flatten.map { |d| option_library % d.to_s }
 
-      _pp "LD", outfile.relative_path
+        _pp "LD", outfile.relative_path
+
+        outfile, *objs = [outfile, objfiles].flatten.map do |f|
+          p "f=#{f}"
+          f.to_s
+        end
+        [library_flags , outfile, objs]
+      end
+      _run link_options, { :flags => all_flags(_library_paths, _flags),
+                           :outfile => Pathnamex.new(outfile) , :objs => objs.join(' '),
+                           :flags_before_libraries => [flags_before_libraries, _flags_before_libraries].flatten.join(' '),
+                           :flags_after_libraries => [flags_after_libraries, _flags_after_libraries].flatten.join(' '),
+                           :libs => library_flags.join(' ') }
+      
+=begin
       if MRUBY_BUILD_HOST_IS_CYGWIN
         _run link_options, { :flags => all_flags(_library_paths, _flags),
-                             :outfile => cygwin_filename(outfile) , :objs => cygwin_filename(objfiles).join(' '),
+                             :outfile => Pathnamex.new(outfile) , :objs => objfiles.map { |x| Pathnamex.new(x) }.join(' '),
                              :flags_before_libraries => [flags_before_libraries, _flags_before_libraries].flatten.join(' '),
                              :flags_after_libraries => [flags_after_libraries, _flags_after_libraries].flatten.join(' '),
                              :libs => library_flags.join(' ') }
@@ -186,6 +277,7 @@ module MRuby
                              :flags_after_libraries => [flags_after_libraries, _flags_after_libraries].flatten.join(' '),
                              :libs => library_flags.join(' ') }
       end
+=end
     end
   end
 
@@ -201,11 +293,30 @@ module MRuby
     def run(outfile, objfiles)
       FileUtils.mkdir_p File.dirname(outfile)
       _pp "AR", outfile.relative_path
+
+      mode = convert_mode
+      mode = :NOTHING if mode.nil?
+      objs = nil
+      outfile, objs = Pathnamex.yield_convert_mode(mode) do
+#        [outfile, objfiles].flatten.map do |f|
+        [outfile, objfiles].map do |f|
+          Pathnamex.convert_paths(f)
+        end
+=begin        
+        outfile, *objs = [outfile, objfiles].flatten.map do |f|
+          Pathnamex.convert_paths(f)
+        end
+        [outfile, objs]
+=end
+      end
+      _run archive_options, { :outfile => outfile, :objs => objs.join(' ') }
+=begin
       if MRUBY_BUILD_HOST_IS_CYGWIN
-        _run archive_options, { :outfile => cygwin_filename(outfile), :objs => cygwin_filename(objfiles).join(' ') }
+        _run archive_options, { :outfile => Pathnamex.new(outfile), :objs => objfiles.map { |x| Pathnamex.new(x) }.join(' ') }
       else
         _run archive_options, { :outfile => filename(outfile), :objs => filename(objfiles).join(' ') }
       end
+=end
     end
   end
 

@@ -3,7 +3,7 @@ require "pathname"
 module MRuby
   module Source
     # MRuby's source root directory
-    ROOT = Pathname.new(File.expand_path('../../../',__FILE__))
+    ROOT = Pathnamex.new(File.expand_path('../../../',__FILE__))
 
     # Reads a constant defined at version.h
     MRUBY_READ_VERSION_CONSTANT = Proc.new { |name| ROOT.join('include','mruby','version.h').read.match(/^#define #{name} +"?([\w\. ]+)"?$/)[1] }
