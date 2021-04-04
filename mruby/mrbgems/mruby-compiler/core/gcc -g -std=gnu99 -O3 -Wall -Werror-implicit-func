@@ -1,3 +1,0 @@
- gcc -g -std=gnu99 -O3 -Wall -Werror-implicit-function-declaration -Wdeclaration-after-statement -Wwrite-strings -Wundef -g3 -O0 -DMRB_DEBUG -DMRBGEM_MRUBY_COMPILER_VERSION=0.0.0 -I./include -MMD -o build/host/mrbgems/mruby-compiler/core/codegen.o -c mrbgems/mruby-compiler/core/codegen.c
-
-
