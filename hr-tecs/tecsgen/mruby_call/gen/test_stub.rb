@@ -1,5 +1,4 @@
-def Hello
-	puts "Hello, mruby"
+def 
     
 end
 
