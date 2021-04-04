@@ -1,5 +1,5 @@
-TECS_IMPORT_CDLS = mruby_call.cdl /home/shimo/mruby-on-ev3rt+tecs2.2.0/hr-tecs/tecsgen/tecsgen/tecs/mruby/../../../test/cygwin/cygwin_kernel.cdl ../../tecs_lib/common/TECS2MrubyVM.cdl gen/tmp_plugin_post_code.cdl
-TECS_IMPORT_HEADERS = /home/shimo/mruby-on-ev3rt+tecs2.2.0/hr-tecs/tecsgen/tecsgen/tecs/mruby/../../../test/cygwin/cygwin_tecs.h ../../tecsgen/tecsgen/tecs/mruby/tecs_mruby.h
+TECS_IMPORT_CDLS = mruby_call.cdl $(TECSPATH)/mruby/../../../test/cygwin/cygwin_kernel.cdl ../../tecs_lib/common/TECS2MrubyVM.cdl gen/tmp_plugin_post_code.cdl
+TECS_IMPORT_HEADERS = $(TECSPATH)/mruby/../../../test/cygwin/cygwin_tecs.h ../../tecsgen/tecsgen/tecs/mruby/tecs_mruby.h
 TECS_IMPORTS = $(TECS_IMPORT_CDLS) $(TECS_IMPORT_HEADERS)
 
 SIGNATURE_HEADERS = \
