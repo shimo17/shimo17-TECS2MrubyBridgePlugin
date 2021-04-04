@@ -8,6 +8,7 @@ MRUBY_BUILD_HOST_IS_OPENBSD = RUBY_PLATFORM.include?('openbsd')
 $LOAD_PATH << File.join(MRUBY_ROOT, "lib")
 
 # load build systems
+require "pathnamex"
 require "mruby-core-ext"
 require "mruby/build"
 require "mruby/gem"
@@ -56,7 +57,12 @@ depfiles = MRuby.targets['host'].bins.map do |bin|
   install_path
 end
 
+depfiles_hash = {}
+
 MRuby.each_target do |target|
+  depfiles_hash[target.name] ||= []
+  depfiles_hash[target.name] += target.libraries
+  
   gems.map do |gem|
     current_dir = gem.dir.relative_path_from(Dir.pwd)
     relative_from_root = gem.dir.relative_path_from(MRUBY_ROOT)
@@ -86,6 +92,7 @@ MRuby.each_target do |target|
           install_D t.prerequisites.first, t.name
         end
         depfiles += [ install_path ]
+        depfiles_hash[target.name] += [ install_path ]
       elsif target == MRuby.targets['host-debug']
         unless MRuby.targets['host'].gems.map {|g| g.bins}.include?([bin])
           install_path = MRuby.targets['host-debug'].exefile("#{bin_path}/#{bin}")
@@ -94,9 +101,11 @@ MRuby.each_target do |target|
             install_D t.prerequisites.first, t.name
           end
           depfiles += [ install_path ]
+          depfiles_hash[target.name] += [ install_path ]
         end
       else
         depfiles += [ exec ]
+        depfiles_hash[target.name] += [ exec ]
       end
     end
   end
@@ -105,6 +114,8 @@ end
 depfiles += MRuby.targets.map { |n, t|
   t.libraries
 }.flatten
+
+
 
 depfiles += MRuby.targets.reject { |n, t| n == 'host' }.map { |n, t|
   t.bins.map { |bin| t.exefile("#{t.build_dir}/bin/#{bin}") }
@@ -117,6 +128,20 @@ task :all => depfiles do
   puts
   MRuby.each_target do
     print_build_summary
+  end
+end
+
+desc "build specified target, install (locally) in-repo"
+task :one, :name do |task, args|
+  MRuby.one_target(args) do
+    p task
+    p args
+  end
+end
+
+task :one_ARM => depfiles_hash['ARM'] do |task|
+  MRuby.one_target('ARM') do
+    p task
   end
 end
 

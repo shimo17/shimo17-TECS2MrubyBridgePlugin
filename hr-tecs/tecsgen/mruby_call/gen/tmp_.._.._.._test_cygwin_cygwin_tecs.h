@@ -5,10 +5,10 @@
 /*  34 "gen/tmp_C_src.c" */
 typedef struct { int dummy; } va_list;
 
-/*  1 "/home/shimo/mruby-on-ev3rt+tecs2.2.0/hr-tecs/tecsgen/tecsgen/tecs/mruby/../../../test/cygwin/cygwin_tecs.h" 1 */
-/*  13 "/home/shimo/mruby-on-ev3rt+tecs2.2.0/hr-tecs/tecsgen/tecsgen/tecs/mruby/../../../test/cygwin/cygwin_tecs.h" */
-/*  1 "/home/shimo/mruby-on-ev3rt+tecs2.2.0/hr-tecs/tecsgen/tecsgen/tecs/mruby/../../../test/cygwin/kernel.h" 1 */
-/*  67 "/home/shimo/mruby-on-ev3rt+tecs2.2.0/hr-tecs/tecsgen/tecsgen/tecs/mruby/../../../test/cygwin/kernel.h" */
+/*  1 "/cygdrive/e/v/ext2/git-tecs/shimo17-TECS2MrubyBridgePlugin/hr-tecs/tecsgen/tecsgen/tecs/mruby/../../../test/cygwin/cygwin_tecs.h" 1 */
+/*  13 "/cygdrive/e/v/ext2/git-tecs/shimo17-TECS2MrubyBridgePlugin/hr-tecs/tecsgen/tecsgen/tecs/mruby/../../../test/cygwin/cygwin_tecs.h" */
+/*  1 "/cygdrive/e/v/ext2/git-tecs/shimo17-TECS2MrubyBridgePlugin/hr-tecs/tecsgen/tecsgen/tecs/mruby/../../../test/cygwin/kernel.h" 1 */
+/*  67 "/cygdrive/e/v/ext2/git-tecs/shimo17-TECS2MrubyBridgePlugin/hr-tecs/tecsgen/tecsgen/tecs/mruby/../../../test/cygwin/kernel.h" */
 /*  1 "../test/cygwin/t_stddef.h" 1 */
 /*  68 "../test/cygwin/t_stddef.h" */
 /*  1 "../test/cygwin/target_stddef.h" 1 */
@@ -263,14 +263,14 @@ typedef struct acvct {
  ACPTN acptn3;
  ACPTN acptn4;
 } ACVCT;
-/*  68 "/home/shimo/mruby-on-ev3rt+tecs2.2.0/hr-tecs/tecsgen/tecsgen/tecs/mruby/../../../test/cygwin/kernel.h" 2 */
+/*  68 "/cygdrive/e/v/ext2/git-tecs/shimo17-TECS2MrubyBridgePlugin/hr-tecs/tecsgen/tecsgen/tecs/mruby/../../../test/cygwin/kernel.h" 2 */
 
 
 
 
-/*  1 "/home/shimo/mruby-on-ev3rt+tecs2.2.0/hr-tecs/tecsgen/tecsgen/tecs/mruby/../../../test/cygwin/target_kernel.h" 1 */
-/*  73 "/home/shimo/mruby-on-ev3rt+tecs2.2.0/hr-tecs/tecsgen/tecsgen/tecs/mruby/../../../test/cygwin/kernel.h" 2 */
-/*  83 "/home/shimo/mruby-on-ev3rt+tecs2.2.0/hr-tecs/tecsgen/tecsgen/tecs/mruby/../../../test/cygwin/kernel.h" */
+/*  1 "/cygdrive/e/v/ext2/git-tecs/shimo17-TECS2MrubyBridgePlugin/hr-tecs/tecsgen/tecsgen/tecs/mruby/../../../test/cygwin/target_kernel.h" 1 */
+/*  73 "/cygdrive/e/v/ext2/git-tecs/shimo17-TECS2MrubyBridgePlugin/hr-tecs/tecsgen/tecsgen/tecs/mruby/../../../test/cygwin/kernel.h" 2 */
+/*  83 "/cygdrive/e/v/ext2/git-tecs/shimo17-TECS2MrubyBridgePlugin/hr-tecs/tecsgen/tecsgen/tecs/mruby/../../../test/cygwin/kernel.h" */
 typedef uint_t TEXPTN;
 typedef uint_t FLGPTN;
 typedef uint_t INTNO;
@@ -381,7 +381,7 @@ typedef struct t_ralm {
  STAT almstat;
  RELTIM lefttim;
 } T_RALM;
-/*  201 "/home/shimo/mruby-on-ev3rt+tecs2.2.0/hr-tecs/tecsgen/tecsgen/tecs/mruby/../../../test/cygwin/kernel.h" */
+/*  201 "/cygdrive/e/v/ext2/git-tecs/shimo17-TECS2MrubyBridgePlugin/hr-tecs/tecsgen/tecsgen/tecs/mruby/../../../test/cygwin/kernel.h" */
 extern ER act_tsk(ID tskid) ;
 extern ER iact_tsk(ID tskid) ;
 extern ER_UINT can_act(ID tskid) ;
@@ -529,9 +529,9 @@ extern ER get_ipm(PRI *p_intpri) ;
 
 extern bool_t xsns_dpn(void *p_excinf) ;
 extern bool_t xsns_xpn(void *p_excinf) ;
-/*  14 "/home/shimo/mruby-on-ev3rt+tecs2.2.0/hr-tecs/tecsgen/tecsgen/tecs/mruby/../../../test/cygwin/cygwin_tecs.h" 2 */
-/*  1 "/home/shimo/mruby-on-ev3rt+tecs2.2.0/hr-tecs/tecsgen/tecsgen/tecs/tecs.h" 1 */
-/*  46 "/home/shimo/mruby-on-ev3rt+tecs2.2.0/hr-tecs/tecsgen/tecsgen/tecs/tecs.h" */
+/*  14 "/cygdrive/e/v/ext2/git-tecs/shimo17-TECS2MrubyBridgePlugin/hr-tecs/tecsgen/tecsgen/tecs/mruby/../../../test/cygwin/cygwin_tecs.h" 2 */
+/*  1 "/cygdrive/e/v/ext2/git-tecs/shimo17-TECS2MrubyBridgePlugin/hr-tecs/tecsgen/tecsgen/tecs/tecs.h" 1 */
+/*  46 "/cygdrive/e/v/ext2/git-tecs/shimo17-TECS2MrubyBridgePlugin/hr-tecs/tecsgen/tecsgen/tecs/tecs.h" */
 typedef struct tag_int128_t { int64_t hi; int64_t lo; } int128_t;
 typedef struct tag_uint128_t { int64_t hi; int64_t lo; } uint128_t;
 
@@ -549,9 +549,9 @@ typedef char char_t;
 
 typedef signed char schar_t;
 typedef unsigned char uchar_t;
-/*  15 "/home/shimo/mruby-on-ev3rt+tecs2.2.0/hr-tecs/tecsgen/tecsgen/tecs/mruby/../../../test/cygwin/cygwin_tecs.h" 2 */
-/*  1 "/home/shimo/mruby-on-ev3rt+tecs2.2.0/hr-tecs/tecsgen/tecsgen/tecs/mruby/../../../test/cygwin/tecs_pthread_adaptor.h" 1 */
-/*  22 "/home/shimo/mruby-on-ev3rt+tecs2.2.0/hr-tecs/tecsgen/tecsgen/tecs/mruby/../../../test/cygwin/tecs_pthread_adaptor.h" */
+/*  15 "/cygdrive/e/v/ext2/git-tecs/shimo17-TECS2MrubyBridgePlugin/hr-tecs/tecsgen/tecsgen/tecs/mruby/../../../test/cygwin/cygwin_tecs.h" 2 */
+/*  1 "/cygdrive/e/v/ext2/git-tecs/shimo17-TECS2MrubyBridgePlugin/hr-tecs/tecsgen/tecsgen/tecs/mruby/../../../test/cygwin/tecs_pthread_adaptor.h" 1 */
+/*  22 "/cygdrive/e/v/ext2/git-tecs/shimo17-TECS2MrubyBridgePlugin/hr-tecs/tecsgen/tecsgen/tecs/mruby/../../../test/cygwin/tecs_pthread_adaptor.h" */
 /*  1 "/usr/include/pthread.h" 1 3 4 */
 /*  11 "/usr/include/pthread.h" 3 4 */
 /*  1 "/usr/include/sys/types.h" 1 3 4 */
@@ -1933,33 +1933,13 @@ struct tm *localtime_r (const time_t *,
 void tzset (void);
 
 void _tzset_r (struct _reent *);
-
-typedef struct __tzrule_struct
-{
-  char ch;
-  int m;
-  int n;
-  int d;
-  int s;
-  time_t change;
-  long offset;
-} __tzrule_type;
-
-typedef struct __tzinfo_struct
-{
-  int __tznorth;
-  int __tzyear;
-  __tzrule_type __tzrule[2];
-} __tzinfo_type;
-
-__tzinfo_type *__gettzinfo (void);
-/*  154 "/usr/include/time.h" 3 4 */
+/*  134 "/usr/include/time.h" 3 4 */
 extern long _timezone;
 extern int _daylight;
 
 
 extern char *_tzname[2];
-/*  173 "/usr/include/time.h" 3 4 */
+/*  153 "/usr/include/time.h" 3 4 */
 /*  1 "/usr/include/cygwin/time.h" 1 3 4 */
 /*  17 "/usr/include/cygwin/time.h" 3 4 */
 int clock_setres (clockid_t, struct timespec *);
@@ -1979,8 +1959,8 @@ extern int daylight ;
 
 
 extern long timezone ;
-/*  174 "/usr/include/time.h" 2 3 4 */
-/*  186 "/usr/include/time.h" 3 4 */
+/*  154 "/usr/include/time.h" 2 3 4 */
+/*  166 "/usr/include/time.h" 3 4 */
 int clock_settime (clockid_t clock_id, const struct timespec *tp);
 int clock_gettime (clockid_t clock_id, struct timespec *tp);
 int clock_getres (clockid_t clock_id, struct timespec *res);
@@ -2006,10 +1986,10 @@ int timer_getoverrun (timer_t timerid);
 
 
 int nanosleep (const struct timespec *rqtp, struct timespec *rmtp);
-/*  223 "/usr/include/time.h" 3 4 */
+/*  203 "/usr/include/time.h" 3 4 */
 int clock_nanosleep (clockid_t clock_id, int flags,
  const struct timespec *rqtp, struct timespec *rmtp);
-/*  315 "/usr/include/time.h" 3 4 */
+/*  295 "/usr/include/time.h" 3 4 */
 int clock_getcpuclockid (pid_t pid, clockid_t *clock_id);
 
 
@@ -2175,9 +2155,12 @@ int pthread_setschedparam (pthread_t, int, const struct sched_param *);
 int pthread_setschedprio (pthread_t, int);
 int pthread_setspecific (pthread_key_t, const void *);
 void pthread_testcancel (void);
-/*  240 "/usr/include/pthread.h" 3 4 */
+/*  239 "/usr/include/pthread.h" 3 4 */
+int pthread_yield (void);
+
+
 int pthread_suspend (pthread_t);
 int pthread_continue (pthread_t);
-/*  23 "/home/shimo/mruby-on-ev3rt+tecs2.2.0/hr-tecs/tecsgen/tecsgen/tecs/mruby/../../../test/cygwin/tecs_pthread_adaptor.h" 2 */
-/*  16 "/home/shimo/mruby-on-ev3rt+tecs2.2.0/hr-tecs/tecsgen/tecsgen/tecs/mruby/../../../test/cygwin/cygwin_tecs.h" 2 */
+/*  23 "/cygdrive/e/v/ext2/git-tecs/shimo17-TECS2MrubyBridgePlugin/hr-tecs/tecsgen/tecsgen/tecs/mruby/../../../test/cygwin/tecs_pthread_adaptor.h" 2 */
+/*  16 "/cygdrive/e/v/ext2/git-tecs/shimo17-TECS2MrubyBridgePlugin/hr-tecs/tecsgen/tecsgen/tecs/mruby/../../../test/cygwin/cygwin_tecs.h" 2 */
 /*  37 "gen/tmp_C_src.c" 2 */

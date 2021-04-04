@@ -10,7 +10,7 @@ end
 
 class String
   def relative_path_from(dir)
-    Pathname.new(File.expand_path(self)).relative_path_from(Pathname.new(File.expand_path(dir))).to_s
+    MRuby::Pathnamex.new(File.expand_path(self)).relative_path_from(MRuby::Pathnamex.new(File.expand_path(dir))).to_s
   end
 
   def relative_path

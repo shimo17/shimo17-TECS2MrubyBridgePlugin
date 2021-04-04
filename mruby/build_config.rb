@@ -138,6 +138,10 @@ end
 #end
 
 MRuby::CrossBuild.new('ARM') do |conf|
+  conf.convert_mode = :CYGWIN_TO_WIN_WITH_ESCAPE
+  original_convert_mode = MRuby::Pathnamex.get_convert_mode
+  MRuby::Pathnamex.set_convert_mode(conf.convert_mode)
+
   toolchain :gcc
   conf.cc.defines = %w(DISABLE_STDIO)
   conf.bins = []
@@ -145,7 +149,7 @@ MRuby::CrossBuild.new('ARM') do |conf|
   [conf.cc, conf.objc, conf.asm].each do |cc|
     cc.command = ENV['CC'] || 'arm-none-eabi-gcc'
     cc.flags = [ENV['CFLAGS'] || %w(-g -std=gnu99 -O3 -Wall -Werror-implicit-function-declaration)]
-    cc.include_paths = ["#{MRUBY_ROOT}/include"],
+    cc.include_paths = [MRuby::Pathnamex.new(MRUBY_ROOT).join('include')],
 
     cc.defines = %w(DISABLE_GEMS)
     cc.option_include_path = '-I%s'
@@ -156,7 +160,7 @@ MRuby::CrossBuild.new('ARM') do |conf|
   [conf.cxx].each do |cxx|
     cxx.command = ENV['CXX'] || 'arm-none-eabi-g++'
     cxx.flags = [ENV['CXXFLAGS'] || ENV['CFLAGS'] || %w(-g -O3 -Wall -Werror-implicit-function-declaration)]
-    cxx.include_paths = ["#{MRUBY_ROOT}/include"]
+    cxx.include_paths = [MRuby::Pathnamex.new(MRUBY_ROOT).join('include')]
     cxx.defines = %w(DISABLE_GEMS)
     cxx.option_include_path = '-I%s'
     cxx.option_define = '-D%s'
@@ -176,7 +180,7 @@ MRuby::CrossBuild.new('ARM') do |conf|
   # Archiver settings
   conf.archiver do |archiver|
     archiver.command = ENV['AR'] || 'arm-none-eabi-ar'
-p  end
+  end
   #
   #   conf.cc.flags << "-m32"
   #   conf.linker.flags << "-m32"
@@ -224,7 +228,7 @@ p  end
   conf.gem :core => "mruby-fiber"
   # Use Enumerator class (require mruby-fiber)
   conf.gem :core => "mruby-enumerator"
-  # Use Enumerable::Lazy class (require mruby-enumerator)
+  # Use Enumerable::Lazy classlin (require mruby-enumerator)
   conf.gem :core => "mruby-enum-lazy"
   # Generate mirb command
   # conf.gem :core => "mruby-bin-mirb"
@@ -236,6 +240,8 @@ p  end
   #conf.gem :core => "mruby-tecs"
   #conf.gem :core => "mruby-bin-mruby"
   #conf.gem :core => "mruby-ev3-motor"
+
+  MRuby::Pathnamex.set_convert_mode(original_convert_mode)
 end
 
 # Define cross build settings

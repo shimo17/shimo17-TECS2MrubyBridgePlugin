@@ -77,12 +77,9 @@ void         tTestMain_eBody_main(tTestMain_IDX idx);
 #define tTestMain_cTECS2MrubyVM_fin( p_that ) \
 	  tTECS2MrubyVM_eTECS2MrubyVM_fin( \
 	   &tTECS2MrubyVM_CB_tab[0] )
-#define tTestMain_cBody2_func( p_that ) \
-	  nTECS2Mruby_tsMcall_eEnt_func( \
+#define tTestMain_cBody2_Hello( p_that ) \
+	  nTECS2Mruby_tsMcall_eEnt_Hello( \
 	   (nTECS2Mruby_tsMcall_IDX)0 )
-#define tTestMain_cBody2_func2( p_that, val, val6 ) \
-	  nTECS2Mruby_tsMcall_eEnt_func2( \
-	   (nTECS2Mruby_tsMcall_IDX)0, (val), (val6) )
 
 #endif /* TOPPERS_CB_TYPE_ONLY */
 
@@ -125,10 +122,8 @@ extern "C" {
           ((void)p_cellcb, tTestMain_cTECS2MrubyVM_get_mrb( p_cellcb ))
 #define cTECS2MrubyVM_fin( ) \
           ((void)p_cellcb, tTestMain_cTECS2MrubyVM_fin( p_cellcb ))
-#define cBody2_func( ) \
-          ((void)p_cellcb, tTestMain_cBody2_func( p_cellcb ))
-#define cBody2_func2( val, val6 ) \
-          ((void)p_cellcb, tTestMain_cBody2_func2( p_cellcb, val, val6 ))
+#define cBody2_Hello( ) \
+          ((void)p_cellcb, tTestMain_cBody2_Hello( p_cellcb ))
 
 
 

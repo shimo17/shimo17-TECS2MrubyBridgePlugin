@@ -39,8 +39,7 @@ typedef int   nTECS2Mruby_tsMcall_IDX;
 
 /* 受け口関数プロトタイプ宣言 #_EPP_# */
 /* sMcall */
-void         nTECS2Mruby_tsMcall_eEnt_func(nTECS2Mruby_tsMcall_IDX idx);
-int32_t      nTECS2Mruby_tsMcall_eEnt_func2(nTECS2Mruby_tsMcall_IDX idx, int32_t val, int32_t val6);
+void         nTECS2Mruby_tsMcall_eEnt_Hello(nTECS2Mruby_tsMcall_IDX idx);
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
@@ -124,8 +123,7 @@ extern "C" {
 
 
 /* 受け口関数マクロ（短縮形） #_EPM_# */
-#define eEnt_func        nTECS2Mruby_tsMcall_eEnt_func
-#define eEnt_func2       nTECS2Mruby_tsMcall_eEnt_func2
+#define eEnt_Hello       nTECS2Mruby_tsMcall_eEnt_Hello
 
 /* イテレータコード (FOREACH_CELL)の生成(CB,INIB は存在しない) #_NFEC_# */
 #define FOREACH_CELL(i,p_cb)   \

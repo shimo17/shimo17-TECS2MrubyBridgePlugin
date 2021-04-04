@@ -31,15 +31,16 @@
  * context:    task
  * #[</ENTRY_PORT>]# */
 
-/* #[<ENTRY_FUNC>]# eEnt_func
- * name:         eEnt_func
- * global_name:  nTECS2Mruby_tsMcall_eEnt_func
+/* #[<ENTRY_FUNC>]# eEnt_Hello
+ * name:         eEnt_Hello
+ * global_name:  nTECS2Mruby_tsMcall_eEnt_Hello
  * oneway:       false
  * #[</ENTRY_FUNC>]# */
 void
-eEnt_func(CELLIDX idx)
+eEnt_Hello(CELLIDX idx)
 {
-  tsMcall_CB    *p_cellcb;
+  CELLCB    *p_cellcb;
+  mrb_state *mrb = cMethodCall_get_mrb();
   if( VALID_IDX( idx ) ){
     p_cellcb = GET_CELLCB(idx);
   }else{
@@ -48,30 +49,7 @@ eEnt_func(CELLIDX idx)
 
   
 
-  cMethodCall_get_mrb();
-  mrb_value func_call = mrb_funcall(mrb ,mrb_top_self(mrb), "func", 0);
-}
-
-/* #[<ENTRY_FUNC>]# eEnt_func2
- * name:         eEnt_func2
- * global_name:  nTECS2Mruby_tsMcall_eEnt_func2
- * oneway:       false
- * #[</ENTRY_FUNC>]# */
-int32_t
-eEnt_func2(CELLIDX idx, int32_t val, int32_t val6)
-{
-  int32_t  retval;
-  tsMcall_CB    *p_cellcb;
-  if( VALID_IDX( idx ) ){
-    p_cellcb = GET_CELLCB(idx);
-  }else{
-     /* エラー処理コードをここに記述*/
-  }
-
-  
-
-  cMethodCall_get_mrb();
-  mrb_value func2_call = mrb_funcall(mrb ,mrb_top_self(mrb), "func2", 2, val, val6);
+  mrb_value Hello_call = mrb_funcall(mrb ,mrb_top_self(mrb), "Hello", 0);
 }
 
 /* #[<POSTAMBLE>]#

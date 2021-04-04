@@ -3,5 +3,5 @@ MRuby::Gem::Specification.new('mruby-pack') do |spec|
   spec.authors = 'Internet Initiative Japan Inc.'
   spec.summary = 'Array#pack and String#unpack method'
 
-  spec.cc.include_paths << "#{build.root}/src"
+  spec.cc.include_paths << MRuby::Pathnamex.new(build.root).join('src')
 end

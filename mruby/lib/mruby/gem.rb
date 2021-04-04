@@ -78,7 +78,8 @@ module MRuby
         @requirements = []
         @dependencies, @conflicts = [], []
         @export_include_paths = []
-        @export_include_paths << "#{dir}/include" if File.directory? "#{dir}/include"
+        dir_pn = Pathnamex.new(dir).join('include')
+        @export_include_paths << dir_pn if dir_pn.directory?
 
         instance_eval(&@initializer)
 
@@ -98,7 +99,8 @@ module MRuby
         compilers.each do |compiler|
           compiler.define_rules build_dir, "#{dir}"
           compiler.defines << %Q[MRBGEM_#{funcname.upcase}_VERSION=#{version}]
-          compiler.include_paths << "#{dir}/include" if File.directory? "#{dir}/include"
+          dir_pn = Pathnamex.new(dir).join('include')
+          compiler.include_paths << dir_pn if dir_pn.directory?
         end
 
         define_gem_init_builder if @generate_functions

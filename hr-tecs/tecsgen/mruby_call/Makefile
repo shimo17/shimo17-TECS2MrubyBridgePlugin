@@ -13,7 +13,9 @@
 TARGET_BASE = mruby_call
 BASE_DIR = .
 GEN_DIR = $(BASE_DIR)/gen
-INCLUDES = -I $(BASE_DIR)/. -I $(BASE_DIR)/../test/cygwin -I /home/shimo/mruby-on-ev3rt+tecs2.2.0/hr-tecs/tecsgen/tecsgen/tecs -I /home/shimo/mruby-on-ev3rt+tecs2.2.0/hr-tecs/tecsgen/tecsgen/tecs/mruby -I /home/shimo/mruby-on-ev3rt+tecs2.2.0/hr-tecs/tecsgen/tecsgen/tecs/posix -I /home/shimo/mruby-on-ev3rt+tecs2.2.0/hr-tecs/tecsgen/tecsgen/tecs/rpc -I /home/shimo/mruby-on-ev3rt+tecs2.2.0/hr-tecs/tecsgen/tecsgen/tecs/TECSInfo -I /home/shimo/mruby-on-ev3rt+tecs2.2.0/hr-tecs/tecsgen/tecsgen/tecs/TLSFMalloc -I $(GEN_DIR)
+MRUBY_DIR = $(BASE_DIR)/../../../mruby
+TECSGEN_DIR = $(BASE_DIR)/..
+INCLUDES = -I $(BASE_DIR)/. -I $(BASE_DIR)/../test/cygwin -I $(TOP_DIR)/hr-tecs/tecsgen/tecsgen/tecs -I $(TECSGEN_DIR)/tecsgen/tecs/mruby -I $(TECSGEN_DIR)/tecsgen/tecs/posix -I $(TECSGEN_DIR)/tecsgen/tecs/rpc -I $(TECSGEN_DIR)/tecsgen/tecs/TECSInfo -I $(TECSGEN_DIR)/tecsgen/tecs/TLSFMalloc -I $(GEN_DIR) -I $(TECSGEN_DIR)/tecsgen/tecs -I $(MRUBY_DIR)/incllude -I /cygdrive/e/v/ext2/git-tecs/shimo17-TECS2MrubyBridgePlugin/mruby/include
 DEFINES =
 
 # end of fixed variable (unchangeable by config or plugin)
